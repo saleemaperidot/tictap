@@ -51,6 +51,7 @@ class counterCounter extends GetxController {
     if (currentSecond.value == randomNumber.value) {
       successIndicator.value = 1;
       score.value = score.value + 1;
+      gameStartIndicator.value = false;
     }
 
     // Update the currentSecond every second
