@@ -13,9 +13,21 @@ class counterCounter extends GetxController {
   RxInt score = 0.obs;
   late Timer timer;
   RxBool gameStartIndicator = false.obs;
+  RxBool gameWin = false.obs;
 
   @override
   void onInit() {
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    timer.cancel();
+    super.onClose();
+  }
+
+  void gameStart() {
+    gameStartIndicator.value = true;
     timer = Timer.periodic(Duration(seconds: 1), (_) {
       percent.value += 0.20; // Increment by 1% every second
       countdown.value = countdown.value - 1;
@@ -28,19 +40,11 @@ class counterCounter extends GetxController {
         score.value = 0;
         noOfAttempts.value = 0;
         gameStartIndicator.value = false;
+        timer.cancel();
+        gameWin.value = false;
+        gameWin.refresh();
       }
     });
-    super.onInit();
-  }
-
-  @override
-  void onClose() {
-    timer.cancel();
-    super.onClose();
-  }
-
-  void gameStart() {
-    gameStartIndicator.value = true;
   }
 
   void tictap() {
@@ -49,6 +53,7 @@ class counterCounter extends GetxController {
     noOfAttempts.value = noOfAttempts.value + 1;
     successIndicator.value = 0;
     if (currentSecond.value == randomNumber.value) {
+      gameWin.value = true;
       successIndicator.value = 1;
       score.value = score.value + 1;
       gameStartIndicator.value = false;

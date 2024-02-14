@@ -196,18 +196,20 @@ class Tictap extends StatelessWidget {
             );
           }),
           Obx(() {
-            return controller.gameStartIndicator.value == false
-                ? ElevatedButton(
-                    onPressed: () {
-                      controller.gameStart();
-                    },
-                    child: Text("Start"))
-                : ElevatedButton(
-                    onPressed: () {
-                      controller.tictap();
-                      if (controller.countdown.value == 5) {}
-                    },
-                    child: Text("Click"));
+            return controller.gameWin.value
+                ? SizedBox.shrink()
+                : controller.gameStartIndicator.value == false
+                    ? ElevatedButton(
+                        onPressed: () {
+                          controller.gameStart();
+                        },
+                        child: Text("Start"))
+                    : ElevatedButton(
+                        onPressed: () {
+                          controller.tictap();
+                          if (controller.countdown.value == 5) {}
+                        },
+                        child: Text("Click"));
           })
         ],
       )),
