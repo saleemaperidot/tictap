@@ -20,7 +20,7 @@ applications
 Databases: Experience with databases, both SQL (like SQLite) and NoSQL (like Firestore).
 Experience in developing responsive and accessible web applications
 Good in web service integration (REST, JSON), MySQL/SQLite and Hive databases and Familiarity with 
-PHP developmen
+PHP development
 
 Technical skills:
 Flutter Framework, Dart Programming Language, State Management GetX,BLOC, Responsive Design,
